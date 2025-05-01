@@ -1,0 +1,736 @@
+/* Base styles and reset */
+:root {
+    --background-color: #f8f9fa;
+    --text-color: #333;
+    --header-background-color: #3498db;
+    --link-color: #2980b9;
+    --link-hover-background: #2980b9;
+}
+body.light-theme {
+    --background-color: #ffffff;
+    --text-color: #000000;
+}
+
+body.dark-theme {
+    --background-color: #121212;
+    --text-color: #2f258d;
+}
+
+body.pastel-theme {
+    --background-color: #ffefd5;
+    --text-color: #6a5acd;
+}
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+/* Container and layout */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header"
+        "main"
+        "aside"
+        "footer";
+    gap: 20px;
+}
+
+/* Header styles */
+header {
+    grid-area: header;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    color: #2c3e50;
+}
+
+/* Navigation styles */
+nav {
+    width: 100%;
+    margin-top: 15px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #f0f0f0;
+    color: #2c3e50;
+}
+
+nav ul li a.active {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Main content area */
+main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+section, article {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+    font-size: 1.5rem;
+}
+
+h3 {
+    color: #34495e;
+    margin-bottom: 15px;
+    font-size: 1.25rem;
+}
+
+.section-intro {
+    margin-bottom: 25px;
+    color: #555;
+}
+
+/* About section styles */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #f0f0f0;
+}
+
+/* Social links */
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.social-link i {
+    margin-right: 8px;
+}
+
+.social-link:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Timeline for experience */
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    border-left: 2px solid #3498db;
+    margin-bottom: 20px;
+}
+
+.timeline-date {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #3498db;
+}
+
+.role {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+/* Projects styles */
+.project-list {
+    list-style: none;
+}
+
+.project-item {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.project-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.project-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.project-type, .project-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.project-type i, .project-link i {
+    margin-right: 5px;
+}
+
+.project-link {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.project-details {
+    margin-top: 20px;
+}
+
+.tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    margin-top: 10px;
+}
+
+.tech-list li {
+    background-color: #f0f0f0;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+/* Skills page styles */
+.skills-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+}
+
+.skill-category {
+    margin-bottom: 20px;
+}
+
+.skill-list {
+    list-style: none;
+}
+
+.skill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.skill-level {
+    font-size: 0.85rem;
+    padding: 3px 10px;
+    border-radius: 12px;
+    color: white;
+}
+
+.basic {
+    background-color: #95a5a6;
+}
+
+.intermediate {
+    background-color: #3498db;
+}
+
+.advanced {
+    background-color: #2ecc71;
+}
+
+/* Education and courses */
+.education-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+}
+
+.education-item {
+    margin-bottom: 30px;
+}
+
+.degree {
+    margin-bottom: 20px;
+}
+
+.institution, .date {
+    color: #666;
+    margin-top: 5px;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.course {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.course-icon {
+    background-color: #3498db;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Contact form styles */
+.contact-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.submit-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #2980b9;
+}
+
+/* FAQ Accordion */
+.accordion {
+    margin-top: 20px;
+}
+
+.accordion-item {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.accordion-header {
+    background-color: #f8f9fa;
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.accordion-content {
+    padding: 0 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.accordion-item.active .accordion-content {
+    padding: 15px;
+    max-height: 200px;
+}
+
+.accordion-icon {
+    transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-icon {
+    transform: rotate(45deg);
+}
+
+/* Sidebar styles */
+aside {
+    grid-area: aside;
+}
+
+.aside-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.aside-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.highlights-list, .stats-list, .soft-skills {
+    list-style: none;
+}
+
+.highlights-list li, .stats-list li, .soft-skills li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.highlights-list i, .stats-list i, .soft-skills i {
+    color: #3498db;
+    width: 20px;
+    text-align: center;
+}
+
+.project-preview li {
+    margin-bottom: 10px;
+}
+
+.project-preview a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.project-preview a:hover {
+    text-decoration: underline;
+}
+
+/* Skill bars */
+.skill-bars {
+    margin-top: 15px;
+}
+
+.skill {
+    margin-bottom: 15px;
+}
+
+.skill-name {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.skill-bar {
+    height: 8px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    background-color: #3498db;
+    border-radius: 4px;
+}
+
+/* Languages in sidebar */
+.languages li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.language {
+    font-weight: 500;
+}
+
+.language-level {
+    display: flex;
+    gap: 3px;
+}
+
+.level-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+}
+
+.level-dot.active {
+    background-color: #3498db;
+}
+
+/* Contact info and social icons */
+.contact-info li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.contact-info i {
+    width: 20px;
+    text-align: center;
+    color: #3498db;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Footer styles */
+footer {
+    grid-area: footer;
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Responsive design - Tablet and larger */
+@media (min-width: 768px) {
+    .container {
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas:
+            "header header"
+            "main aside"
+            "footer footer";
+    }
+    
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    nav {
+        width: auto;
+        margin-top: 0;
+    }
+    
+    .profile-container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .skills-grid, .education-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .form-row {
+        flex-direction: row;
+    }
+}
+
+/* Responsive design - Desktop */
+@media (min-width: 992px) {
+    nav ul {
+        gap: 15px;
+    }
+    
+    .skills-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Animations and transitions */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+section, article, .aside-section {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 5px solid #ddd;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Fade-in Animation for Projects */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.project-item {
+    opacity: 0; /* Start hidden */
+    animation: fadeIn 0.6s ease-out forwards;
+}
+

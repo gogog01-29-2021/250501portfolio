@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIM SEONGHYUN | Projects</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <!-- Header section with name and navigation -->
+        <header>
+            <h1>KIM SEONGHYUN</h1>
+            <nav>
+                <ul><!--
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="projects.html" class="active">Projects</a></li>
+                    <li><a href="skills.html">Skills</a></li>
+                    <li><a href="contacts.html">Contact</a></li>
+                --></ul>
+            </nav>
+        </header>
+
+        <main>
+            <div id="filter-buttons">
+                <button data-filter="All">All</button>
+                <button data-filter="Computer Vision">Computer Vision</button>
+                <button data-filter="Hedging">Hedging</button>
+                <button data-filter="Regression">Regression</button>
+            </div>
+            
+            <!-- Projects article containing all project items -->
+            <article class="projects">
+                <h2>My Projects</h2>
+                <p class="section-intro">Here are some of my recent projects that demonstrate my skills in machine learning, computer vision, and financial technology.</p>
+                
+                <ul id="project-list" class="project-list">
+                    <!-- Project 1 -->
+                    <li id="project1" class="project-item">
+                        <h3>Korean Won Detection</h3>
+                        <div class="project-meta">
+                            <span class="project-type"><i class="fas fa-tags"></i> Computer Vision</span>
+                            <a href="https://github.com/mannmi/KoreanWonDetection" class="project-link">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                        </div>
+                        <p class="project-description">A machine learning project that identifies and classifies Korean Won (currency) in images with high accuracy. Implemented using computer vision techniques and deep learning models.</p>
+                        
+                        <div class="video-wrapper">
+                            <iframe 
+                                src="https://www.youtube.com/embed/ULiOvo3cGKI"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        
+                        <div class="project-details">
+                            <h4>Technologies Used</h4>
+                            <ul class="tech-list">
+                                <li>Python</li>
+                                <li>TensorFlow</li>
+                                <li>OpenCV</li>
+                                <li>Deep Neural Networks</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!-- Project 2 -->
+                    <li id="project2" class="project-item">
+                        <h3>Deep Hedging with Reinforcement Learning</h3>
+                        <div class="project-meta">
+                            <span class="project-type"><i class="fas fa-tags"></i> FinTech, ML</span>
+                            <a href="https://www.qvest.ai" class="project-link">
+                                <i class="fas fa-link"></i> Project Website
+                            </a>
+                        </div>
+                        <p class="project-description">Developed a deep reinforcement learning system for financial hedging strategies. This project uses advanced machine learning to optimize investment decisions and risk management in volatile markets.</p>
+                        
+                        <div class="video-wrapper">
+                            <iframe 
+                                src="https://www.youtube.com/embed/UeET6UTnXdY"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        
+                        <div class="project-details">
+                            <h4>Technologies Used</h4>
+                            <ul class="tech-list">
+                                <li>Python</li>
+                                <li>PyTorch</li>
+                                <li>Reinforcement Learning</li>
+                                <li>Financial Modeling</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!-- Project 3 -->
+                    <li id="project3" class="project-item">
+                        <h3>Mohamed Salah Goal Prediction for Quantitative Betting Market</h3>
+                        <div class="project-meta">
+                            <span class="project-type"><i class="fas fa-tags"></i> Sports Analytics, ML</span>
+                        </div>
+                        <p class="project-description">Created a predictive analytics model to forecast goal-scoring opportunities for Mohamed Salah in football matches. This project combines sports statistics, player performance metrics, and machine learning to develop quantitative betting insights.</p>
+                        
+                        <div class="video-wrapper">
+                            <iframe 
+                                src="https://www.youtube.com/embed/BPJBhvsICaA?start=1"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        
+                        <div class="project-details">
+                            <h4>Technologies Used</h4>
+                            <ul class="tech-list">
+                                <li>Python</li>
+                                <li>Scikit-learn</li>
+                                <li>Statistical Modeling</li>
+                                <li>Data Visualization</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </article>
+        </main>
+
+        <!-- Sidebar with project statistics -->
+        <aside>
+            <div class="aside-section">
+                <h2>Skills Showcased</h2>
+                <div class="skill-bars">
+                    <div class="skill">
+                        <span class="skill-name">Computer Vision</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span class="skill-name">Machine Learning</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span class="skill-name">Data Analysis</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span class="skill-name">FinTech</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="aside-section">
+                <h2>Project Stats</h2>
+                <ul class="stats-list">
+                    <li><i class="fas fa-code-branch"></i> <strong>15</strong> GitHub Repositories</li>
+                    <li><i class="fas fa-star"></i> <strong>120+</strong> Stars</li>
+                    <li><i class="fas fa-code"></i> <strong>20K+</strong> Lines of Code</li>
+                    <li><i class="fas fa-users"></i> <strong>8</strong> Collaborators</li>
+                </ul>
+            </div>
+        </aside>
+
+        <footer>
+            <p>&copy; 2025 KIM SEONGHYUN. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript for navigation highlighting and transitions -->
+    <script src="navigation.js"></script>
+    <script src="project.js"></script>
+    <script src="theme-switcher.js"></script>
+</body>
+</html>

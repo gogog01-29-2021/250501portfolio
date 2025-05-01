@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIM SEONGHYUN | Autonomous Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <style>
+        #canvas-container {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            background-color: #1a1a2e;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .data-transfer {
+            position: absolute;
+            background-color: rgba(0, 255, 255, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(0.1); opacity: 1; }
+            70% { opacity: 0.7; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        
+        .stats-panel {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #00ff9d;
+            font-family: monospace;
+            padding: 15px;
+            border-radius: 5px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 200px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        
+        .project-description {
+            margin: 30px 0;
+            line-height: 1.6;
+        }
+        
+        .tech-box {
+            display: inline-block;
+            background-color: #2a2a4a;
+            color: #fff;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header section with name and navigation -->
+        <header>
+            <h1>KIM SEONGHYUN</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="projectproposal.html" class="active">Projects Proposal</a></li>
+                    <!-- <li><a href="artgallery.html">Art Gallery</a></li> -->
+                    <!-- <li><a href="skills.html">Skills</a></li>
+                    <li><a href="contacts.html">Contact</a></li> -->
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <article class="projects">
+                <h2>Autonomous Vehicle & Drone Communication System</h2>
+                <p class="section-intro">An advanced project demonstrating autonomous vehicle and drone data transmission via satellite communications.</p>
+                
+                <div id="canvas-container">
+                    <!-- Three.js canvas will go here -->
+                    <div class="stats-panel">
+                        <p>SYSTEM STATUS</p>
+                        <div id="vehicle-status">Vehicle: Connected</div>
+                        <div id="drone-status">Drone: Connected</div>
+                        <div id="satellite-status">Satellite: Active</div>
+                        <div id="data-rate">Data Transfer: 0 MB/s</div>
+                        <div id="latency">Latency: 0 ms</div>
+                    </div>
+                </div>
+                
+                <div class="project-description">
+                    <h3>Project Overview</h3>
+                    <p>This project demonstrates a sophisticated communication system between autonomous ground vehicles and aerial drones, connected via satellite relay. The system enables seamless data transfer in real-time, allowing for coordinated navigation and mission execution even in remote areas with limited connectivity.</p>
+                    
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Low-latency communication between vehicle and drone</li>
+                        <li>Satellite data relay for extended operational range</li>
+                        <li>Real-time telemetry and mission data synchronization</li>
+                        <li>Encrypted and secure data transmission protocols</li>
+                        <li>Autonomous coordination in navigation and data gathering</li>
+                    </ul>
+                    
+                    <h3>Technologies Used</h3>
+                    <div>
+                        <span class="tech-box">IoT</span>
+                        <span class="tech-box">Satellite Communications</span>
+                        <span class="tech-box">Python</span>
+                        <span class="tech-box">ROS (Robot Operating System)</span>
+                        <span class="tech-box">Computer Vision</span>
+                        <span class="tech-box">MQTT Protocol</span>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <aside>
+            <div class="aside-section">
+                <h2>Project Impact</h2>
+                <ul class="stats-list">
+                    <li><i class="fas fa-tachometer-alt"></i> <strong>98.7%</strong> Connection Reliability</li>
+                    <li><i class="fas fa-bolt"></i> <strong>12ms</strong> Average Latency</li>
+                    <li><i class="fas fa-map-marked"></i> <strong>50km</strong> Max Operational Range</li>
+                    <li><i class="fas fa-lock"></i> <strong>256-bit</strong> Encryption</li>
+                </ul>
+            </div>
+            
+            <div class="aside-section">
+                <h2>Applications</h2>
+                <ul class="highlights-list">
+                    <li><i class="fas fa-search"></i> Search and Rescue</li>
+                    <li><i class="fas fa-mountain"></i> Remote Area Monitoring</li>
+                    <li><i class="fas fa-seedling"></i> Agricultural Mapping</li>
+                    <li><i class="fas fa-shield-alt"></i> Security Surveillance</li>
+                </ul>
+            </div>
+        </aside>
+
+        <footer>
+            <p>&copy; 2025 KIM SEONGHYUN. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Three.js scene setup
+        let scene, camera, renderer;
+        let vehicle, drone, satellite;
+        let dataBeams = [];
+        let clock = new THREE.Clock();
+        
+        // Initialize Three.js scene
+        function init() {
+            // Create scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x1a1a2e);
+            
+            // Create camera
+            camera = new THREE.PerspectiveCamera(
+                75, 
+                document.getElementById('canvas-container').offsetWidth / 
+                document.getElementById('canvas-container').offsetHeight, 
+                0.1, 
+                1000
+            );
+            camera.position.set(0, 30, 50);
+            camera.lookAt(0, 0, 0);
+            
+            // Create renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(
+                document.getElementById('canvas-container').offsetWidth,
+                document.getElementById('canvas-container').offsetHeight
+            );
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+            
+            // Create light
+            const ambientLight = new THREE.AmbientLight(0x404040);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+            directionalLight.position.set(10, 20, 15);
+            scene.add(directionalLight);
+            
+            // Create ground
+            const groundGeometry = new THREE.PlaneGeometry(100, 100, 32, 32);
+            const groundMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0x1a472a,
+                wireframe: false,
+                roughness: 0.8
+            });
+            const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+            ground.rotation.x = -Math.PI / 2;
+            ground.position.y = -2;
+            scene.add(ground);
+            
+            // Add grid helper
+            const gridHelper = new THREE.GridHelper(100, 20);
+            scene.add(gridHelper);
+            
+            // Create road
+            const roadGeometry = new THREE.PlaneGeometry(10, 100, 1, 1);
+            const roadMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0x333333,
+                roughness: 0.5
+            });
+            const road = new THREE.Mesh(roadGeometry, roadMaterial);
+            road.rotation.x = -Math.PI / 2;
+            road.position.y = -1.9;
+            scene.add(road);
+            
+            // Create vehicle (autonomous car)
+            const vehicleGeometry = new THREE.BoxGeometry(4, 2, 6);
+            const vehicleMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0x3366ff,
+                roughness: 0.5
+            });
+            vehicle = new THREE.Mesh(vehicleGeometry, vehicleMaterial);
+            vehicle.position.set(0, 0, -20);
+            scene.add(vehicle);
+            
+            // Add vehicle details
+            const vehicleTopGeometry = new THREE.BoxGeometry(3, 1, 3);
+            const vehicleTopMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0x2255dd,
+                roughness: 0.5
+            });
+            const vehicleTop = new THREE.Mesh(vehicleTopGeometry, vehicleTopMaterial);
+            vehicleTop.position.y = 1.5;
+            vehicle.add(vehicleTop);
+            
+            // Add wheels
+            const wheelGeometry = new THREE.CylinderGeometry(1, 1, 0.5, 16);
+            const wheelMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0x111111,
+                roughness: 0.7
+            });
+            
+            const wheelPositions = [
+                [-2, -1, -2], // Front left
+                [2, -1, -2],  // Front right
+                [-2, -1, 2],  // Back left
+                [2, -1, 2]    // Back right
+            ];
+            
+            wheelPositions.forEach(pos => {
+                const wheel = new THREE.Mesh(wheelGeometry, wheelMaterial);
+                wheel.position.set(pos[0], pos[1], pos[2]);
+                wheel.rotation.z = Math.PI / 2;
+                vehicle.add(wheel);
+            });
+            
+            // Create drone
+            const droneBody = new THREE.Group();
+            
+            const droneCenterGeometry = new THREE.BoxGeometry(2, 0.5, 2);
+            const droneMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0xff5555,
+                roughness: 0.5
+            });
+            const droneCenter = new THREE.Mesh(droneCenterGeometry, droneMaterial);
+            droneBody.add(droneCenter);
+            
+            // Drone arms and propellers
+            const armGeometry = new THREE.BoxGeometry(1, 0.2, 0.2);
+            const armMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0xdddddd,
+                roughness: 0.5
+            });
+            
+            const propGeometry = new THREE.CylinderGeometry(0.6, 0.6, 0.1, 16);
+            const propMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0x333333,
+                roughness: 0.5
+            });
+            
+            const armPositions = [
+                [1.5, 0, 1.5],  // Front right
+                [-1.5, 0, 1.5], // Front left
+                [1.5, 0, -1.5], // Back right
+                [-1.5, 0, -1.5] // Back left
+            ];
+            
+            armPositions.forEach(pos => {
+                const arm = new THREE.Mesh(armGeometry, armMaterial);
+                arm.position.set(pos[0]/2, 0, pos[2]/2);
+                arm.lookAt(pos[0], 0, pos[2]);
+                arm.scale.set(Math.sqrt(pos[0]*pos[0] + pos[2]*pos[2])/2, 1, 1);
+                droneBody.add(arm);
+                
+                const prop = new THREE.Mesh(propGeometry, propMaterial);
+                prop.position.set(pos[0], 0, pos[2]);
+                prop.rotation.x = Math.PI / 2;
+                droneBody.add(prop);
+            });
+            
+            drone = droneBody;
+            drone.position.set(5, 15, 0);
+            scene.add(drone);
+            
+            // Create satellite
+            const satelliteBody = new THREE.Group();
+            
+            const satCenterGeometry = new THREE.BoxGeometry(2, 1, 4);
+            const satMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0xaaaaaa,
+                roughness: 0.3
+            });
+            const satCenter = new THREE.Mesh(satCenterGeometry, satMaterial);
+            satelliteBody.add(satCenter);
+            
+            // Solar panels
+            const panelGeometry = new THREE.BoxGeometry(8, 0.1, 3);
+            const panelMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0x0066aa,
+                roughness: 0.3,
+                metalness: 0.7
+            });
+            
+            const leftPanel = new THREE.Mesh(panelGeometry, panelMaterial);
+            leftPanel.position.set(-5, 0, 0);
+            satelliteBody.add(leftPanel);
+            
+            const rightPanel = new THREE.Mesh(panelGeometry, panelMaterial);
+            rightPanel.position.set(5, 0, 0);
+            satelliteBody.add(rightPanel);
+            
+            // Dish
+            const dishGeometry = new THREE.SphereGeometry(1, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2);
+            const dishMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0xdddddd,
+                side: THREE.DoubleSide,
+                roughness: 0.5
+            });
+            const dish = new THREE.Mesh(dishGeometry, dishMaterial);
+            dish.rotation.x = Math.PI;
+            dish.position.set(0, 0, -2);
+            satelliteBody.add(dish);
+            
+            satellite = satelliteBody;
+            satellite.position.set(0, 80, 0);
+            satellite.rotation.z = Math.PI / 4;
+            scene.add(satellite);
+            
+            // Create data beam particles
+            const beamMaterial = new THREE.LineBasicMaterial({ 
+                color: 0x00ffff,
+                linewidth: 1
+            });
+            
+            // Add stars
+            const starsGeometry = new THREE.BufferGeometry();
+            const starsCount = 1000;
+            const starsPositions = new Float32Array(starsCount * 3);
+            
+            for (let i = 0; i < starsCount * 3; i += 3) {
+                starsPositions[i] = (Math.random() - 0.5) * 200;
+                starsPositions[i + 1] = Math.random() * 100 + 20;
+                starsPositions[i + 2] = (Math.random() - 0.5) * 200;
+            }
+            
+            starsGeometry.setAttribute('position', new THREE.BufferAttribute(starsPositions, 3));
+            const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.5 });
+            const stars = new THREE.Points(starsGeometry, starsMaterial);
+            scene.add(stars);
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = document.getElementById('canvas-container').offsetWidth / 
+                                document.getElementById('canvas-container').offsetHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(
+                    document.getElementById('canvas-container').offsetWidth,
+                    document.getElementById('canvas-container').offsetHeight
+                );
+            });
+            
+            // Start animation
+            animate();
+        }
+        
+        // Create data beam between two objects
+        function createDataBeam(sourceObj, targetObj) {
+            const beamGeometry = new THREE.BufferGeometry();
+            
+            // Start with positions, will update in animation
+            const positions = new Float32Array(2 * 3);
+            beamGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            
+            const beamMaterial = new THREE.LineBasicMaterial({ 
+                color: 0x00ffff,
+                transparent: true,
+                opacity: 0.8
+            });
+            
+            const beam = new THREE.Line(beamGeometry, beamMaterial);
+            scene.add(beam);
+            
+            return {
+                line: beam,
+                source: sourceObj,
+                target: targetObj,
+                progress: 0,
+                active: true,
+                lifetime: 5 + Math.random() * 3 // Random lifetime between 5-8 seconds
+            };
+        }
+        
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            const deltaTime = clock.getDelta();
+            const elapsedTime = clock.getElapsedTime();
+            
+            // Animate vehicle movement
+            vehicle.position.z = -20 + Math.sin(elapsedTime * 0.3) * 15;
+            
+            // Animate drone movement
+            drone.position.x = 5 + Math.sin(elapsedTime * 0.7) * 10;
+            drone.position.z = Math.cos(elapsedTime * 0.5) * 10;
+            drone.position.y = 15 + Math.sin(elapsedTime * 2) * 2;
+            drone.rotation.y = Math.sin(elapsedTime * 0.5) * 0.2;
+            
+            // Rotate drone propellers
+            if (drone.children) {
+                drone.children.forEach((child, index) => {
+                    if (index > 4) { // Propellers
+                        child.rotation.y += 0.3 * (index % 2 === 0 ? 1 : -1);
+                    }
+                });
+            }
+            
+            // Animate satellite
+            satellite.rotation.y = elapsedTime * 0.1;
+            
+            // Update data beams
+            if (Math.random() < 0.01) {
+                // 1% chance each frame to create a new beam
+                const sources = [vehicle, drone, satellite];
+                const targets = [vehicle, drone, satellite];
+                
+                const sourceIndex = Math.floor(Math.random() * sources.length);
+                let targetIndex;
+                do {
+                    targetIndex = Math.floor(Math.random() * targets.length);
+                } while (targetIndex === sourceIndex);
+                
+                dataBeams.push(createDataBeam(sources[sourceIndex], targets[targetIndex]));
+                
+                // Update data rate display
+                document.getElementById('data-rate').textContent = 
+                    `Data Transfer: ${(Math.random() * 5 + 2).toFixed(1)} MB/s`;
+                document.getElementById('latency').textContent = 
+                    `Latency: ${Math.floor(Math.random() * 20 + 10)} ms`;
+            }
+            
+            // Update existing beams
+            for (let i = 0; i < dataBeams.length; i++) {
+                const beam = dataBeams[i];
+                
+                // Update beam progress
+                beam.progress += deltaTime / beam.lifetime;
+                
+                if (beam.progress >= 1) {
+                    // Remove completed beams
+                    scene.remove(beam.line);
+                    dataBeams.splice(i, 1);
+                    i--;
+                    continue;
+                }
+                
+                // Update beam positions
+                const positions = beam.line.geometry.attributes.position.array;
+                
+                // Source position
+                positions[0] = beam.source.position.x;
+                positions[1] = beam.source.position.y;
+                positions[2] = beam.source.position.z;
+                
+                // Target position - lerp between source and target
+                const progress = Math.min(beam.progress * 2, 1);
+                positions[3] = beam.source.position.x + (beam.target.position.x - beam.source.position.x) * progress;
+                positions[4] = beam.source.position.y + (beam.target.position.y - beam.source.position.y) * progress;
+                positions[5] = beam.source.position.z + (beam.target.position.z - beam.source.position.z) * progress;
+                
+                // Fade out near completion
+                if (beam.progress > 0.5) {
+                    beam.line.material.opacity = 2 * (1 - beam.progress);
+                }
+                
+                beam.line.geometry.attributes.position.needsUpdate = true;
+            }
+            
+            renderer.render(scene, camera);
+        }
+        
+        // Initialize when the page loads
+        window.onload = init;
+    </script>
+</body>
+</html>
